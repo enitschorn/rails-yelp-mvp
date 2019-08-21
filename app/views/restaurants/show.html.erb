@@ -1,0 +1,39 @@
+<div class="container">
+  <h1><%= @restaurant.name %></h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Address</th>
+        <td><%= @restaurant.address %></td>
+      </tr>
+      <tr>
+        <th scope="row">Phone Number</th>
+        <td><%= @restaurant.phone_number %></td>
+      </tr>
+      <tr>
+        <th scope="row">Category</th>
+        <td><%= @restaurant.category %></td>
+      </tr>
+      <tr>
+        <th scope="row">Rating</th>
+        <% if @restaurant.reviews.present? %>
+          <% @restaurant.reviews.each do |review| %>
+          <td>⭐️ <strong><%= review.rating %></strong> - <%= review.content %></td>
+          <% end %>
+        <% else %>
+          <td>This restaurant has no reviews yet. 🙁</td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <%= link_to 'Go back', restaurants_path, class: 'btn btn-primary' %>
+    <%= link_to 'Add a Review', new_restaurant_review_path(@restaurant), class: 'btn btn-primary' %>
+  </div>
+</div>
